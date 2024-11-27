@@ -7,7 +7,7 @@
 #
 # Generator:     sensirion-driver-generator 1.0.1
 # Product:       sen66
-# Model-Version: 1.2.0
+# Model-Version: 1.3.0
 #
 """
 The signal classes specify transformations of the raw sensor signals into a meaningful units.
@@ -17,8 +17,22 @@ The generated signal types are used by the driver class and not intended for dir
 from sensirion_driver_support_types.signals import AbstractSignal
 
 
+class SignalMassConcentrationPm0p5(AbstractSignal):
+    """Mass concentration for particles smaller than 0.5 μm"""
+
+    def __init__(self, mass_concentration_pm0p5_raw):
+        self._mass_concentration_pm0p5 = mass_concentration_pm0p5_raw / 10.0
+
+    @property
+    def value(self):
+        return self._mass_concentration_pm0p5
+
+    def __str__(self):
+        return '{0:.2f}'.format(self.value)
+
+
 class SignalMassConcentrationPm1p0(AbstractSignal):
-    """Mass concentration for particles smaller than 1.0 um"""
+    """Mass concentration for particles smaller than 1.0 μm"""
 
     def __init__(self, mass_concentration_pm1p0_raw):
         self._mass_concentration_pm1p0 = mass_concentration_pm1p0_raw / 10.0
@@ -32,7 +46,7 @@ class SignalMassConcentrationPm1p0(AbstractSignal):
 
 
 class SignalMassConcentrationPm2p5(AbstractSignal):
-    """Mass concentration for particles smaller than 2.5 um"""
+    """Mass concentration for particles smaller than 2.5 μm"""
 
     def __init__(self, mass_concentration_pm2p5_raw):
         self._mass_concentration_pm2p5 = mass_concentration_pm2p5_raw / 10.0
@@ -46,7 +60,7 @@ class SignalMassConcentrationPm2p5(AbstractSignal):
 
 
 class SignalMassConcentrationPm4p0(AbstractSignal):
-    """Mass concentration for particles smaller than 4.0 um"""
+    """Mass concentration for particles smaller than 4.0 μm"""
 
     def __init__(self, mass_concentration_pm4p0_raw):
         self._mass_concentration_pm4p0 = mass_concentration_pm4p0_raw / 10.0
@@ -60,7 +74,7 @@ class SignalMassConcentrationPm4p0(AbstractSignal):
 
 
 class SignalMassConcentrationPm10p0(AbstractSignal):
-    """Mass concentration for particles smaller than 10.0 um"""
+    """Mass concentration for particles smaller than 10.0 μm"""
 
     def __init__(self, mass_concentration_pm10p0_raw):
         self._mass_concentration_pm10p0 = mass_concentration_pm10p0_raw / 10.0
@@ -133,12 +147,12 @@ class SignalCo2(AbstractSignal):
     """Measured CO2 in ppm."""
 
     def __init__(self, co2_raw):
-        self._co2 = co2_raw / 1.0
+        self._co2 = co2_raw
 
     @property
     def value(self):
         return self._co2
 
     def __str__(self):
-        return '{0:.2f}'.format(self.value)
+        return '{0}'.format(self.value)
 

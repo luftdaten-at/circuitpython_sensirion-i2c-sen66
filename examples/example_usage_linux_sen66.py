@@ -7,7 +7,7 @@
 #
 # Generator:     sensirion-driver-generator 1.0.1
 # Product:       sen66
-# Model-Version: 1.2.0
+# Model-Version: 1.3.0
 #
 
 import argparse
@@ -31,7 +31,7 @@ with LinuxI2cTransceiver(args.i2c_port) as i2c_transceiver:
     print(f"serial_number: {serial_number}; "
           )
     sensor.start_continuous_measurement()
-    for i in range(50):
+    for i in range(100):
         try:
             time.sleep(1.0)
             (mass_concentration_pm1p0, mass_concentration_pm2p5, mass_concentration_pm4p0, mass_concentration_pm10p0, humidity,
