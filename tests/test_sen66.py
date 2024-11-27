@@ -7,7 +7,7 @@
 #
 # Generator:     sensirion-driver-generator 1.0.1
 # Product:       sen66
-# Model-Version: 1.2.0
+# Model-Version: 1.3.0
 #
 
 import pytest
@@ -42,27 +42,117 @@ def test_get_serial_number1(sensor):
           )
 
 
-def test_get_version1(sensor):
-    (firmware_major, firmware_minor, firmware_debug, hardware_major, hardware_minor, protocol_major, protocol_minor,
-     padding
-     ) = sensor.get_version()
-    print(f"firmware_major: {firmware_major}; "
-          f"firmware_minor: {firmware_minor}; "
-          f"firmware_debug: {firmware_debug}; "
-          f"hardware_major: {hardware_major}; "
-          f"hardware_minor: {hardware_minor}; "
-          f"protocol_major: {protocol_major}; "
-          f"protocol_minor: {protocol_minor}; "
-          f"padding: {padding}; "
-          )
-
-
 def test_device_reset1(sensor):
     sensor.device_reset()
 
 
+def test_start_fan_cleaning1(sensor):
+    sensor.start_fan_cleaning()
+
+
+def test_set_temperature_offset_parameters1(sensor):
+    sensor.set_temperature_offset_parameters(1, 10, 1, 0)
+
+
+def test_set_voc_algorithm_tuning_parameters1(sensor):
+    sensor.set_voc_algorithm_tuning_parameters(100, 12, 12, 180, 50, 230)
+
+
+def test_get_voc_algorithm_tuning_parameters1(sensor):
+    (index_offset, learning_time_offset_hours, learning_time_gain_hours, gating_max_duration_minutes, std_initial,
+     gain_factor
+     ) = sensor.get_voc_algorithm_tuning_parameters()
+    print(f"index_offset: {index_offset}; "
+          f"learning_time_offset_hours: {learning_time_offset_hours}; "
+          f"learning_time_gain_hours: {learning_time_gain_hours}; "
+          f"gating_max_duration_minutes: {gating_max_duration_minutes}; "
+          f"std_initial: {std_initial}; "
+          f"gain_factor: {gain_factor}; "
+          )
+
+
+def test_set_nox_algorithm_tuning_parameters1(sensor):
+    sensor.set_nox_algorithm_tuning_parameters(1, 12, 12, 720, 50, 230)
+
+
+def test_get_nox_algorithm_tuning_parameters1(sensor):
+    (index_offset, learning_time_offset_hours, learning_time_gain_hours, gating_max_duration_minutes, std_initial,
+     gain_factor
+     ) = sensor.get_nox_algorithm_tuning_parameters()
+    print(f"index_offset: {index_offset}; "
+          f"learning_time_offset_hours: {learning_time_offset_hours}; "
+          f"learning_time_gain_hours: {learning_time_gain_hours}; "
+          f"gating_max_duration_minutes: {gating_max_duration_minutes}; "
+          f"std_initial: {std_initial}; "
+          f"gain_factor: {gain_factor}; "
+          )
+
+
+def test_set_temperature_acceleration_parameters1(sensor):
+    sensor.set_temperature_acceleration_parameters(1, 1, 1, 1)
+
+
+def test_get_voc_algorithm_state1(sensor):
+    state = sensor.get_voc_algorithm_state()
+    print(f"state: {state}; "
+          )
+
+
+def test_set_co2_sensor_automatic_self_calibration1(sensor):
+    sensor.set_co2_sensor_automatic_self_calibration(0)
+
+
+def test_get_co2_sensor_automatic_self_calibration1(sensor):
+    (padding, status
+     ) = sensor.get_co2_sensor_automatic_self_calibration()
+    print(f"padding: {padding}; "
+          f"status: {status}; "
+          )
+
+
+def test_set_ambient_pressure1(sensor):
+    sensor.set_ambient_pressure(1013)
+
+
+def test_get_ambient_pressure1(sensor):
+    ambient_pressure = sensor.get_ambient_pressure()
+    print(f"ambient_pressure: {ambient_pressure}; "
+          )
+
+
+def test_set_sensor_altitude1(sensor):
+    sensor.set_sensor_altitude(0)
+
+
+def test_get_sensor_altitude1(sensor):
+    altitude = sensor.get_sensor_altitude()
+    print(f"altitude: {altitude}; "
+          )
+
+
+def test_activate_sht_heater1(sensor):
+    sensor.activate_sht_heater()
+
+
+def test_read_device_status1(sensor):
+    device_status = sensor.read_device_status()
+    print(f"device_status: {device_status}; "
+          )
+
+
+def test_read_and_clear_device_status1(sensor):
+    device_status = sensor.read_and_clear_device_status()
+    print(f"device_status: {device_status}; "
+          )
+
+
 def test_start_continuous_measurement1(sensor):
     sensor.start_continuous_measurement()
+    (padding, data_ready
+     ) = sensor.get_data_ready()
+    print(f"padding: {padding}; "
+          f"data_ready: {data_ready}; "
+          )
     (mass_concentration_pm1p0, mass_concentration_pm2p5, mass_concentration_pm4p0, mass_concentration_pm10p0, humidity,
      temperature, voc_index, nox_index, co2
      ) = sensor.read_measured_values()
@@ -89,10 +179,35 @@ def test_start_continuous_measurement1(sensor):
           f"nox_index: {nox_index}; "
           f"co2: {co2}; "
           )
-    (padding, data_ready
-     ) = sensor.get_data_ready()
-    print(f"padding: {padding}; "
-          f"data_ready: {data_ready}; "
+    (mass_concentration_pm0p5, mass_concentration_pm1p0, mass_concentration_pm2p5, mass_concentration_pm4p0,
+     mass_concentration_pm10p0
+     ) = sensor.read_number_concentration_values()
+    print(f"mass_concentration_pm0p5: {mass_concentration_pm0p5}; "
+          f"mass_concentration_pm1p0: {mass_concentration_pm1p0}; "
+          f"mass_concentration_pm2p5: {mass_concentration_pm2p5}; "
+          f"mass_concentration_pm4p0: {mass_concentration_pm4p0}; "
+          f"mass_concentration_pm10p0: {mass_concentration_pm10p0}; "
+          )
+    (number_concentration_pm0p5, number_concentration_pm1p0, number_concentration_pm2p5, number_concentration_pm4p0,
+     number_concentration_pm10p0
+     ) = sensor.read_number_concentration_values_as_integers()
+    print(f"number_concentration_pm0p5: {number_concentration_pm0p5}; "
+          f"number_concentration_pm1p0: {number_concentration_pm1p0}; "
+          f"number_concentration_pm2p5: {number_concentration_pm2p5}; "
+          f"number_concentration_pm4p0: {number_concentration_pm4p0}; "
+          f"number_concentration_pm10p0: {number_concentration_pm10p0}; "
+          )
+    (raw_humidity, raw_temperature, raw_voc, raw_nox, raw_co2
+     ) = sensor.read_measured_raw_values()
+    print(f"raw_humidity: {raw_humidity}; "
+          f"raw_temperature: {raw_temperature}; "
+          f"raw_voc: {raw_voc}; "
+          f"raw_nox: {raw_nox}; "
+          f"raw_co2: {raw_co2}; "
+          )
+    sensor.set_temperature_offset_parameters(1, 10, 1, 0)
+    state = sensor.get_voc_algorithm_state()
+    print(f"state: {state}; "
           )
     sensor.stop_measurement()
 
