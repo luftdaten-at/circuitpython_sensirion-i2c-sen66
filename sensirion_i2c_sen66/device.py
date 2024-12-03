@@ -7,7 +7,7 @@
 #
 # Generator:     sensirion-driver-generator 1.0.1
 # Product:       sen66
-# Model-Version: 1.3.0
+# Model-Version: 1.3.1
 #
 """
 The class Sen66DeviceBase implements the low level interface of the sensor.
@@ -30,10 +30,12 @@ from sensirion_i2c_sen66.commands import (ActivateShtHeater, DeviceReset, Device
                                           SetVocAlgorithmTuningParameters, StartContinuousMeasurement,
                                           StartFanCleaning, StopMeasurement)
 
-from sensirion_i2c_sen66.result_types import (SignalCo2, SignalHumidity, SignalMassConcentrationPm0p5,
-                                              SignalMassConcentrationPm10p0, SignalMassConcentrationPm1p0,
-                                              SignalMassConcentrationPm2p5, SignalMassConcentrationPm4p0,
-                                              SignalNoxIndex, SignalTemperature, SignalVocIndex)
+from sensirion_i2c_sen66.result_types import (SignalCo2, SignalHumidity, SignalMassConcentrationPm10p0,
+                                              SignalMassConcentrationPm1p0, SignalMassConcentrationPm2p5,
+                                              SignalMassConcentrationPm4p0, SignalNoxIndex,
+                                              SignalNumberConcentrationPm0p5, SignalNumberConcentrationPm10p0,
+                                              SignalNumberConcentrationPm1p0, SignalNumberConcentrationPm2p5,
+                                              SignalNumberConcentrationPm4p0, SignalTemperature, SignalVocIndex)
 
 
 class Sen66DeviceBase:
@@ -689,13 +691,13 @@ class Sen66Device(Sen66DeviceBase):
         Read measured values and apply scaling as defined in datasheet.
 
         :return mass_concentration_pm1p0:
-            Mass concentration for particles smaller than 1.0 μm.
+            Mass concentration in μg/m³ for particles smaller than 1.0 μm.
         :return mass_concentration_pm2p5:
-            Mass concentration for particles smaller than 2.5 μm.
+            Mass concentration in μg/m³ for particles smaller than 2.5 μm.
         :return mass_concentration_pm4p0:
-            Mass concentration for particles smaller than 4.0 μm.
+            Mass concentration in μg/m³ for particles smaller than 4.0 μm.
         :return mass_concentration_pm10p0:
-            Mass concentration for particles smaller than 10.0 μm.
+            Mass concentration in μg/m³ for particles smaller than 10.0 μm.
         :return humidity:
             Measured humidity in %RH.
         :return temperature:
@@ -722,22 +724,22 @@ class Sen66Device(Sen66DeviceBase):
         """
         Read measured number concentration values and apply scaling as defined in datasheet.
 
-        :return mass_concentration_pm0p5:
-            Mass concentration for particles smaller than 1.0 μm.
-        :return mass_concentration_pm1p0:
-            Mass concentration for particles smaller than 1.0 μm.
-        :return mass_concentration_pm2p5:
-            Mass concentration for particles smaller than 2.5 μm.
-        :return mass_concentration_pm4p0:
-            Mass concentration for particles smaller than 4.0 μm.
-        :return mass_concentration_pm10p0:
-            Mass concentration for particles smaller than 10.0 μm.
+        :return number_concentration_pm0p5:
+            Number concentration in particles/cm³ for particles smaller than 0.5 μm.
+        :return number_concentration_pm1p0:
+            Number concentration in particles/cm³ for particles smaller than 1.0 μm.
+        :return number_concentration_pm2p5:
+            Number concentration in particles/cm³ for particles smaller than 2.5 μm.
+        :return number_concentration_pm4p0:
+            Number concentration in particles/cm³ for particles smaller than 4.0 μm.
+        :return number_concentration_pm10p0:
+            Number concentration in particles/cm³ for particles smaller than 10.0 μm.
         """
-        (mass_concentration_pm0p5_raw, mass_concentration_pm1p0_raw, mass_concentration_pm2p5_raw,
-         mass_concentration_pm4p0_raw, mass_concentration_pm10p0_raw
+        (number_concentration_pm0p5_raw, number_concentration_pm1p0_raw, number_concentration_pm2p5_raw,
+         number_concentration_pm4p0_raw, number_concentration_pm10p0_raw
          ) = self.read_number_concentration_values_as_integers()
-        return (SignalMassConcentrationPm0p5(mass_concentration_pm0p5_raw),
-                SignalMassConcentrationPm1p0(mass_concentration_pm1p0_raw),
-                SignalMassConcentrationPm2p5(mass_concentration_pm2p5_raw),
-                SignalMassConcentrationPm4p0(mass_concentration_pm4p0_raw),
-                SignalMassConcentrationPm10p0(mass_concentration_pm10p0_raw))
+        return (SignalNumberConcentrationPm0p5(number_concentration_pm0p5_raw),
+                SignalNumberConcentrationPm1p0(number_concentration_pm1p0_raw),
+                SignalNumberConcentrationPm2p5(number_concentration_pm2p5_raw),
+                SignalNumberConcentrationPm4p0(number_concentration_pm4p0_raw),
+                SignalNumberConcentrationPm10p0(number_concentration_pm10p0_raw))

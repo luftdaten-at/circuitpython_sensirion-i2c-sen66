@@ -7,7 +7,7 @@
 #
 # Generator:     sensirion-driver-generator 1.0.1
 # Product:       sen66
-# Model-Version: 1.3.0
+# Model-Version: 1.3.1
 #
 
 import pytest
@@ -179,14 +179,14 @@ def test_start_continuous_measurement1(sensor):
           f"nox_index: {nox_index}; "
           f"co2: {co2}; "
           )
-    (mass_concentration_pm0p5, mass_concentration_pm1p0, mass_concentration_pm2p5, mass_concentration_pm4p0,
-     mass_concentration_pm10p0
+    (number_concentration_pm0p5, number_concentration_pm1p0, number_concentration_pm2p5, number_concentration_pm4p0,
+     number_concentration_pm10p0
      ) = sensor.read_number_concentration_values()
-    print(f"mass_concentration_pm0p5: {mass_concentration_pm0p5}; "
-          f"mass_concentration_pm1p0: {mass_concentration_pm1p0}; "
-          f"mass_concentration_pm2p5: {mass_concentration_pm2p5}; "
-          f"mass_concentration_pm4p0: {mass_concentration_pm4p0}; "
-          f"mass_concentration_pm10p0: {mass_concentration_pm10p0}; "
+    print(f"number_concentration_pm0p5: {number_concentration_pm0p5}; "
+          f"number_concentration_pm1p0: {number_concentration_pm1p0}; "
+          f"number_concentration_pm2p5: {number_concentration_pm2p5}; "
+          f"number_concentration_pm4p0: {number_concentration_pm4p0}; "
+          f"number_concentration_pm10p0: {number_concentration_pm10p0}; "
           )
     (number_concentration_pm0p5, number_concentration_pm1p0, number_concentration_pm2p5, number_concentration_pm4p0,
      number_concentration_pm10p0

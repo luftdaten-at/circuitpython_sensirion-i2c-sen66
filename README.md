@@ -26,12 +26,12 @@ For special setups you find the sensor pinout in the section below.
 
 | *Pin* | *Cable Color* | *Name* | *Description*  | *Comments* |
 |-------|---------------|:------:|----------------|------------|
-| 1 | red | VDD | Supply Voltage | 3.3V ±10%
+| 1 | red | VDD | Supply Voltage | 3.3V ±5%
 | 2 | black | GND | Ground |
 | 3 | green | SDA | I2C: Serial data input / output | TTL 5V compatible
 | 4 | yellow | SCL | I2C: Serial clock input | TTL 5V compatible
-| 5 |  | NC | Do not connect |
-| 6 |  | NC | Do not connect |
+| 5 |  | GND | Ground | Do not connect (Pins 2 and 5 are connected internally)
+| 6 |  | VDD | Supply Voltage | Do not connect (Pins 1 and 6 are connected internally)
 
 
 </p>
