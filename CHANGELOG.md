@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Serial number and product name interpreted as string (changed from uint8[32] to int8[32])
+- Serial number and product name interpreted as string 
+
 ## [1.0.1] - 2024-12-1
 
 ### Fixed
