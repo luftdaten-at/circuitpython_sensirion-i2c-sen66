@@ -7,7 +7,7 @@
 #
 # Generator:     sensirion-driver-generator 1.1.2
 # Product:       sen66
-# Model-Version: 1.5.0
+# Model-Version: 1.6.0
 #
 """
 The transfer classes specify the data that is transferred between host and sensor. The generated transfer classes
@@ -460,6 +460,8 @@ class ActivateShtHeater(Transfer):
     to reverse creep at high humidity.
     This command activates the SHT sensor heater with 200mW for 1s.
     The heater is then automatically deactivated again.
+    The "get_sht_heater_measurements" command can be used to check if the
+    heater has finished (firmware version >= 4.0).
     Wait at least 20s after this command before starting a measurement to get
     coherent temperature values (heating consequence to disappear).
     """
@@ -469,7 +471,23 @@ class ActivateShtHeater(Transfer):
     def pack(self):
         return self.tx_data.pack([])
 
-    tx = TxData(CMD_ID, '>H', device_busy_delay=1.3, slave_address=None, ignore_ack=False)
+    tx = TxData(CMD_ID, '>H', device_busy_delay=0.02, slave_address=None, ignore_ack=False)
+
+
+class GetShtHeaterMeasurements(Transfer):
+    """
+    Get the measured values when the SHT sensor heating is triggerd. If the
+    heating is not finished, the returned humidity and temperature values
+    are 0x7FFF.
+    """
+
+    CMD_ID = 0x6790
+
+    def pack(self):
+        return self.tx_data.pack([])
+
+    tx = TxData(CMD_ID, '>H', device_busy_delay=0.02, slave_address=None, ignore_ack=False)
+    rx = RxData('>hh')
 
 
 class GetProductName(Transfer):
@@ -494,6 +512,18 @@ class GetSerialNumber(Transfer):
 
     tx = TxData(CMD_ID, '>H', device_busy_delay=0.02, slave_address=None, ignore_ack=False)
     rx = RxData('>32s')
+
+
+class GetVersion(Transfer):
+    """Gets the version information for the hardware, firmware and communication protocol."""
+
+    CMD_ID = 0xd100
+
+    def pack(self):
+        return self.tx_data.pack([])
+
+    tx = TxData(CMD_ID, '>H', device_busy_delay=0.02, slave_address=None, ignore_ack=False)
+    rx = RxData('>BB')
 
 
 class ReadDeviceStatus(Transfer):
