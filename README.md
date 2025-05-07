@@ -23,9 +23,6 @@ The default I²C address of [SEN66](https://www.sensirion.com/products/catalog/S
 
 ## Connect the sensor
 
-You can connect your sensor over a [SEK-SensorBridge](https://developer.sensirion.com/sensirion-products/sek-sensorbridge/).
-For special setups you find the sensor pinout in the section below.
-
 <details><summary>Sensor pinout</summary>
 <p>
 <img src="https://raw.githubusercontent.com/Sensirion/python-i2c-sen66/master/images/sen6x-pinout.png"
