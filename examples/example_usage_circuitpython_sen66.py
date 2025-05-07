@@ -2,7 +2,6 @@ import board
 import busio
 
 import time
-#from sensirion_i2c_driver import LinuxI2cTransceiver, I2cConnection, CrcCalculator
 from sensirion_i2c_driver import I2cTransceiver,I2cConnection, CrcCalculator
 from sensirion_driver_adapters.i2c_adapter.i2c_channel import I2cChannel
 from sensirion_i2c_sen66.device import Sen66Device
