@@ -1,6 +1,13 @@
-# Python I2C Driver for Sensirion SEN66
+> ⚠️ This is a modified and bundled version of the official Sensirion CircuitPython drivers.
+> Original copyright (c) Sensirion AG.
+> Modifications by Luftdaten.at, 2025.
+> Licensed under the BSD 3-Clause License (see [LICENSE](LICENSE)).
 
-This repository contains the Python driver to communicate with a Sensirion SEN66 sensor over I2C.
+
+
+# CircuitPython I2C Driver for Sensirion SEN66
+
+This repository contains the CircuitPython driver to communicate with a Sensirion SEN66 sensor over I2C.
 
 <img src="https://raw.githubusercontent.com/Sensirion/python-i2c-sen66/master/images/sen6x.png"
     width="300px" alt="SEN66 picture">
@@ -38,30 +45,10 @@ For special setups you find the sensor pinout in the section below.
 </details>
 
 
-## Documentation & Quickstart
+## Example usage
 
-See the [documentation page](https://sensirion.github.io/python-i2c-sen66) for an API description and a
-[quickstart](https://sensirion.github.io/python-i2c-sen66/execute-measurements.html) example.
+See [example_usage_circuitpython_sen66.py](examples/example_usage_circuitpython_sen66.py)
 
-
-## Contributing
-
-### Check coding style
-
-The coding style can be checked with [`flake8`](http://flake8.pycqa.org/):
-
-```bash
-pip install -e .[test]  # Install requirements
-flake8                  # Run style check
-```
-
-In addition, we check the formatting of files with
-[`editorconfig-checker`](https://editorconfig-checker.github.io/):
-
-```bash
-pip install editorconfig-checker==2.0.3   # Install requirements
-editorconfig-checker                      # Run check
-```
 
 ## License
 

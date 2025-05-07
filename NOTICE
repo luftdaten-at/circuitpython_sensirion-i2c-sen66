@@ -1,0 +1,11 @@
+NOTICE
+
+This project includes modified versions of libraries originally developed by Sensirion AG.
+All original files are licensed under the BSD 3-Clause License.
+
+Modifications made by Luftdaten.at in 2025 include:
+- Merging multiple driver modules into one package
+- Adjusting for CircuitPython compatibility
+- Code simplification and restructuring
+
+See LICENSE for original terms.
